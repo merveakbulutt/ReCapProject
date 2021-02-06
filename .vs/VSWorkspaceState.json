@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Business",
+    "\\Business\\Business",
+    "\\Business\\Business\\Abstract",
+    "\\Business\\Business\\Concrete",
+    "\\ConsoleUI",
+    "\\ConsoleUI\\ConsoleUI"
+  ],
+  "SelectedNode": "\\Business\\Business\\Abstract\\ICarService.cs",
+  "PreviewInSolutionExplorer": false
+}

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "hE3HMvr9Ww0VIG6fq+hOO3p+5xn1J81AEVw2eziFZ7y8VSagZbIuA8PPViVb+29UQYM2CWosagusf0b5gVPCUA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Katip\\source\\repos\\ReCapProject\\Entities\\Entities.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Katip\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Katip\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
