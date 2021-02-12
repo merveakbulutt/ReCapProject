@@ -17,6 +17,7 @@ namespace Business.Concrete
         }
         public void Add(Brand brand)
         {
+
             if (brand.BrandName.Length > 2)
             {
                 _brandDal.Add(brand);
@@ -41,10 +42,10 @@ namespace Business.Concrete
 
         public Brand GetById(int id)
         {
-            return _brandDal.Get(b => b.BrandId == id);
+          return _brandDal.Get(b => b.BrandId == id);
         }
 
-        public void Uptade(Brand brand)
+        public void Update(Brand brand)
         {
             _brandDal.Update(brand);
             Console.WriteLine("Marka güncellendi");

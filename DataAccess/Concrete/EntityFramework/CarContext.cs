@@ -6,16 +6,15 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    
-        class CarContext : DbContext
+
+   public class CarContext : DbContext
+    {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            {
-                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=CarContext;Trusted_Connection=true");
-            }
-            public DbSet<Car> Cars { get; set; }
-            public DbSet<Brand> Brands { get; set; }
-            public DbSet<Color> Colors { get; set; }
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=CarContext;Trusted_Connection=true");
         }
-    
+        public DbSet<Car>  Cars { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Color> Colors { get; set; }
+    }
 }
