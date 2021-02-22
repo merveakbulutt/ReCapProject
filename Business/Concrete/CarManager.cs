@@ -23,11 +23,12 @@ namespace Business.Concrete
 
             if (car.DailyPrice > 0)
             {
-                return new ErrorResult(Messages.CarDailyPrice);
+                return new SuccessResult(Messages.CarAdded);
 
             }
             _carDal.Add(car);
-            return new SuccessResult(Messages.CarAdded);
+           
+            return new ErrorResult(Messages.CarDailyPrice);
         }
 
         public IResult Delete(Car car)
@@ -59,7 +60,7 @@ namespace Business.Concrete
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            if (DateTime.Now.Hour == 23)
+            if (DateTime.Now.Hour == 21)
             {
                 return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTime);
             }
