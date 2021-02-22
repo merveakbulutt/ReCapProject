@@ -27,19 +27,19 @@ namespace Business.Concrete
 
             }
             _carDal.Add(car);
-            return new SuccessResult(Messages.Added);
+            return new SuccessResult(Messages.CarAdded);
         }
 
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
-            return new SuccessResult(Messages.Deleted);
+            return new SuccessResult(Messages.CarDeleted);
         }
 
         public IDataResult<List<Car>> GetAll()
         {
           
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.Listed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarListed);
         }
 
         public IDataResult<List<Car>> GetAllByBrandId(int id)
@@ -70,7 +70,7 @@ namespace Business.Concrete
         public IResult Update(Car car)
         {
             _carDal.Update(car);
-            return new SuccessResult(Messages.Updated);
+            return new SuccessResult(Messages.CarUpdated);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
+using Entities.Concrete;
 using System;
 
 namespace ConsoleUI
@@ -12,10 +13,21 @@ namespace ConsoleUI
             CarManager carManager = new CarManager(new EfCarDal());
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             ColorManager colorManager = new ColorManager(new EfColorDal());
-            
+            UserManager userManager = new UserManager(new EfUserDal());
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
 
-            CarTest();
+            RentalTest();
+
+            // CarTest();
             //BrandTest();
+        }
+
+
+        private static void RentalTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.Add(new Rental { CarId = 2, CustomerId = 2, RentDate = DateTime.Now, ReturnDate = null});
+            Console.WriteLine(result.Message);
         }
 
         private static void BrandTest()
@@ -46,5 +58,7 @@ namespace ConsoleUI
                 Console.WriteLine(result.Message);
             }
         }
+
     }
+
 }
