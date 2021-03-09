@@ -74,3 +74,4 @@ C:\Users\Katip\source\repos\ReCapProject\WebAPI\bin\Debug\netcoreapp3.1\FluentVa
 C:\Users\Katip\source\repos\ReCapProject\WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Build.Framework.dll
 C:\Users\Katip\source\repos\ReCapProject\WebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Http.Features.dll
 C:\Users\Katip\source\repos\ReCapProject\WebAPI\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
+C:\Users\Katip\source\repos\ReCapProject\WebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
