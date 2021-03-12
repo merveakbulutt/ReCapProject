@@ -60,6 +60,7 @@ namespace WebAPI
               {
                 new CoreModule(),
               });
+            services.AddApplicationInsightsTelemetry();
 
         }
 

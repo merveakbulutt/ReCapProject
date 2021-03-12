@@ -3,9 +3,11 @@ using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Logging;
 using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -31,9 +33,7 @@ namespace Business.Concrete
         [CacheRemoveAspect("ICarService.Get")]
         public  IResult Add(Car car)
         {
-
-            _carDal.Add(car);
-           
+            _carDal.Add(car);       
             return new SuccessResult(Messages.CarAdded);
         }
 
@@ -44,10 +44,11 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
+        [LogAspect(typeof(FileLogger))]
         [PerformanceAspect(2)]
         public IDataResult<List<Car>> GetAll()
         {
-            Thread.Sleep(3000);
+             Thread.Sleep(3000);
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarListed);
         }
 
@@ -61,6 +62,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>( _carDal.GetAll(c => c.ColorId == id));
         }
 
+        [LogAspect(typeof(DatabaseLogger))]
         [CacheAspect]
         public IDataResult<Car> GetById(int id)
         {
