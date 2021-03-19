@@ -14,6 +14,7 @@ using Entities.Concrete;
 using Entities.Dtos;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading;
 
@@ -45,21 +46,21 @@ namespace Business.Concrete
 
         [CacheAspect]
         [LogAspect(typeof(FileLogger))]
-        [PerformanceAspect(2)]
+       // [PerformanceAspect(2)]
         public IDataResult<List<Car>> GetAll()
         {
-             Thread.Sleep(3000);
+           //  Thread.Sleep(3000);
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarListed);
         }
 
-        public IDataResult<List<Car>> GetAllByBrandId(int id)
+        public IDataResult<List<Car>> GetAllByBrandId(int brandId)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId== id));
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == brandId));
         }
 
-        public IDataResult<List<Car>> GetAllByColorId(int id)
+        public IDataResult<List<Car>> GetAllByColorId(int colorId)
         {
-            return new SuccessDataResult<List<Car>>( _carDal.GetAll(c => c.ColorId == id));
+            return new SuccessDataResult<List<Car>>( _carDal.GetAll(c=> c.ColorId == colorId));
         }
 
         [LogAspect(typeof(DatabaseLogger))]
@@ -71,10 +72,10 @@ namespace Business.Concrete
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            if (DateTime.Now.Hour == 21)
-            {
-                return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTime);
-            }
+            //if (DateTime.Now.Hour == 21)
+            //{
+            //    return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTime);
+            //}
 
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
         }
@@ -93,6 +94,21 @@ namespace Business.Concrete
             _carDal.Update(car);
             _carDal.Add(car);
             return new SuccessResult(Messages.CarUpdated);
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailsByBrandId(int brandId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c=> c.BrandId == brandId));
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailsByColorId(int colorId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.ColorId == colorId));
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailsByCarId(int carId)
+        {
+            return new  SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c=>c.CarId==carId));
         }
     }
 }
