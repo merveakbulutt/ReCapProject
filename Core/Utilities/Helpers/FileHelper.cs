@@ -9,7 +9,7 @@ namespace Core.Utilities.Helpers
 {
     public class FileHelper
     {
-        public static string newPath(IFormFile file)
+        public static (string newPath, string Path2) newPath(IFormFile file)
         {
             FileInfo ff = new FileInfo(file.FileName);
             string fileExtension = ff.Extension;
@@ -18,7 +18,7 @@ namespace Core.Utilities.Helpers
             string path = Environment.CurrentDirectory + @"\wwwroot\Images";
 
             string result = $@"{path}\{newPath}";
-            return result;
+            return (result, $"\\Images\\{newPath}");
         }
 
         public static string Add(IFormFile file)
@@ -35,14 +35,14 @@ namespace Core.Utilities.Helpers
                     }
                 }
 
-                File.Move(sourcePath, result);
+                File.Move(sourcePath, result.newPath);
             }
             catch (Exception ex)
             {
 
                 return ex.Message;
             }
-            return result;
+            return result.Path2;
         }
 
         public static string Update(string sourcePath, IFormFile file)
@@ -52,7 +52,7 @@ namespace Core.Utilities.Helpers
             {
                 if (sourcePath.Length > 0)
                 {
-                    using (var stream = new FileStream(result, FileMode.Create))
+                    using (var stream = new FileStream(result.newPath, FileMode.Create))
                     {
                         file.CopyTo(stream);
                     }
@@ -64,7 +64,7 @@ namespace Core.Utilities.Helpers
 
                 return ex.Message;
             }
-            return result;
+            return result.Path2;
         }
         public static IResult Delete(string path)
         {

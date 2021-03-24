@@ -110,5 +110,7 @@ namespace Business.Concrete
         {
             return new  SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c=>c.CarId==carId));
         }
+
+      
     }
 }

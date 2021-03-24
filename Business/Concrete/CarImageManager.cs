@@ -9,6 +9,7 @@ using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -43,7 +44,8 @@ namespace Business.Concrete
 
         public IResult Delete(CarImage carImage)
         {
-            FileHelper.Delete(carImage.ImagePath);
+            var oldpath = $@"{Environment.CurrentDirectory}\wwwroot{_carImageDal.Get(p => p.Id == carImage.Id).ImagePath}";
+            FileHelper.Delete(oldpath);
             _carImageDal.Delete(carImage);
             return new SuccessResult(Messages.CarImageDeleted);
         }
@@ -59,11 +61,12 @@ namespace Business.Concrete
         }
         public IDataResult<List<CarImage>> GetImagesByCarId(int id)
         {
-            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(ci => ci.CarId== id));
+            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(c => c.CarId== id));
         }
         public IResult Update(IFormFile file,CarImage carImage)
         {
-            carImage.ImagePath = FileHelper.Update(_carImageDal.Get(ci=> ci.Id == carImage.Id).ImagePath, file);
+            var oldpath = $@"{Environment.CurrentDirectory}\wwwroot{_carImageDal.Get(p => p.Id== carImage.Id).ImagePath}";
+            carImage.ImagePath = FileHelper.Update(oldpath, file);
             carImage.Date = DateTime.Now;
 
             _carImageDal.Update(carImage);
@@ -72,7 +75,7 @@ namespace Business.Concrete
 
         private IResult CheckIfCarImageLimitExceded(int carId)
         {
-            var result = _carImageDal.GetAll(ci => ci.CarId == carId).Count;
+            var result = _carImageDal.GetAll(x => x.CarId == carId).Count;
             if (result >= 5)
             {
                 return new ErrorResult(Messages.CarImageLimitExceded);
