@@ -16,5 +16,7 @@ namespace Business.Abstract
         IDataResult<List<Rental>> GetAll();
         IDataResult<Rental> GetById(int id);
         IDataResult<List<RentalDetailDto>> GetRentalDetails(Expression<Func<Rental, bool>> filter = null);
+        IDataResult<List<RentalDetailDto>> GetRentalDetailsByCarId(int carId);
+        IDataResult<List<Rental>> GetByCustomerId(int customerId);
     }
 }

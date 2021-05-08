@@ -54,5 +54,10 @@ namespace Business.Constants
         public static string UserAlreadyExists = "Bu kullanıcı zaten mevcut";
         public static string UserRegistered = "Kullanıcı başarıyla kaydedildi";
 
+        public static string CardAdded = "Kart bilgileri eklendi";
+        public static string CardDeleted = "Kart bilgileri silindi";
+        public static string CardUpdated = "Kart bilgileri güncellendi";
+
+        public static string PaymentAdded = "Ödeme Başarılı";
     }
 }

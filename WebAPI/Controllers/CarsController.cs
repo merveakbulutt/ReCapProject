@@ -42,7 +42,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpDelete("delete")]
+        [HttpPost("delete")]
         public IActionResult Delete(Car car)
         {
             var result = _carService.Delete(car);
@@ -53,7 +53,8 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPut("update")]
+        [HttpPost
+            ("update")]
         public IActionResult Update(Car car)
         {
             var result = _carService.Update(car);
@@ -97,7 +98,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
 
         }
-
+       
         [HttpGet("getcardetails")]
         public IActionResult GetCarDetails()
         {
@@ -153,6 +154,17 @@ namespace WebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest(result.Message);
+        }
+        [HttpGet("getcardetailsbrandidandcolorid")]
+        public IActionResult GetCarDetailsBrandAndColor(int brandId, int colorId)
+        {
+            var result = _carService.GetCarDetailsBrandAndColor(brandId, colorId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
         }
 
     }

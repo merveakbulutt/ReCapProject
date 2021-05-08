@@ -30,6 +30,10 @@ namespace DataAccess.Concrete.EntityFramework
                              {
                                  RentalId = r.RentalId,
                                  BrandName = b.BrandName,
+                                 DailyPrice=c.DailyPrice,
+                                 Description=c.Description,
+                                 CompanyName=customer.CompanyName,
+                                 ModelYear=c.ModelYear,
                                  CarId = r.CarId,
                                  UserId = u.Id,
                                  FirstName = u.FirstName,
